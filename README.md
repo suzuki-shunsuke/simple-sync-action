@@ -8,7 +8,7 @@ This action is useful for the security of CI.
 
 ## Motivation
 
-CI has a security threat that attackers tamper files and execute malicious codes.
+CI has security threats that attackers tamper files and execute malicious codes.
 For example, if you execute shell scripts in CI via pull request event, attackers can tamper files in pull requests and execute malicious codes in CI.
 So you should prevent these files from being tampered without any review.
 
