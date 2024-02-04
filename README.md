@@ -35,12 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - uses: suzuki-shunsuke/simple-sync-action@main
+      - uses: suzuki-shunsuke/simple-sync-action@ed6c2035e78b5bd43ae8167446f00755692ca06c # v0.1.0
         with:
           files: |
             # The list of synchronized files and directories
             # comment
             # empty lines are ignored
+
             # Prevent malicious codes from being executed in CI
             Makefile
             scripts
