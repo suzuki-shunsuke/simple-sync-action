@@ -1,0 +1,20 @@
+---
+name: test
+on: pull_request_target
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: ./
+        with:
+          files: |
+            # The list of synchronized files and directories
+            # comment
+            # empty lines are ignored
+
+            # Prevent malicious codes from being executed in CI
+            README.md
+            .github
+      - run: cat README.md
+      - run: cat .github/workflows/test.yaml
