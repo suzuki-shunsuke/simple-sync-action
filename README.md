@@ -61,6 +61,10 @@ jobs:
 ## Inputs
 
 - `files`: (Required) The list of synchronized files and directories. Empty lines and lines starting with `#` are ignored.
+
+> [!WARNING]
+> The action fails if `files` don't exsting on the base ref.
+
 - `ref`: (Optional) The base ref. The default value is `main`
 
 ## Outputs
