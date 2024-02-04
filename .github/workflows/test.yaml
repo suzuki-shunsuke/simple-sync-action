@@ -17,6 +17,6 @@ jobs:
 
             # Prevent malicious codes from being executed in CI
             README.md
-            .github
+            # .github
       - run: cat README.md
-      - run: cat .github/workflows/test.yaml
+      # - run: cat .github/workflows/test.yaml
