@@ -1,0 +1,47 @@
+name: Simple Sync
+description: Synchronize files with the specific branch
+inputs:
+  ref:
+    description: Base ref
+    default: main
+    required: true
+  files:
+    description: Synchronized files and directories
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: |
+        echo "::error::inpput 'ref' is required"
+        exit 1
+      shell: bash
+      if: inputs.ref == ''
+    - run: |
+        echo "::error::inpput 'files' is required"
+        exit 1
+      shell: bash
+      if: inputs.files == ''
+
+    - run: echo "path=.simple-sync-action-$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+      shell: bash
+      id: src
+
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      with:
+        ref: ${{inputs.ref}}
+        path: ${{steps.src.outputs.path}}
+
+    - run: |
+        set -euo pipefail
+        while read -r line; do
+          rsync --delete -av "$line" "../$line"
+        done < <(echo "$FILES" | grep -v -E '^\s*$' | grep -v -E '^#')
+      shell: bash
+      working-directory: ${{steps.src.outputs.path}}
+      env:
+        FILES: ${{inputs.files}}
+
+    - run: rm -Rf "$SRC"
+      shell: bash
+      env:
+        SRC: ${{steps.src.outputs.path}}
