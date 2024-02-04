@@ -1,6 +1,8 @@
 ---
 name: test
-on: pull_request_target
+# We use pull_request for testing, but actually you should use pull_request_target to prevent workflows from being tampered
+# https://dev.to/suzukishunsuke/secure-github-actions-by-pullrequesttarget-641
+on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
