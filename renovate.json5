@@ -1,6 +1,5 @@
 {
   extends: [
-    "config:best-practices",
     "github>suzuki-shunsuke/renovate-config#3.2.2",
     "github>suzuki-shunsuke/renovate-config:nolimit#3.2.2",
   ],
